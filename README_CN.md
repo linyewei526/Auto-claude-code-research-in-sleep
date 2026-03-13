@@ -10,6 +10,8 @@
 
 基于 [Claude Code](https://docs.anthropic.com/en/docs/claude-code) 的自定义 Skills，用于自主 ML 科研工作流。核心机制是**跨模型协作**——Claude Code 负责执行（读文件、写代码、跑实验、收结果），外部 LLM（通过 [Codex MCP](https://github.com/openai/codex)）负责评审（打分、找弱点、建议修复）。两个模型互不评自己的作业，形成真正的反馈循环。🔀 **也支持[替代模型组合](#-替代模型组合)（如 GLM + GPT、GLM + MiniMax）——无需 Claude API。**
 
+> 💭 **为什么不用单模型自我博弈？** 用 Claude Code 的 subagent 或 agent team 同时做执行和审稿在技术上可行，但容易陷入**局部最优**——同一个模型审自己的输出会产生盲区。Claude Code 的优势是快速丝滑的执行，Codex（GPT-5.4 xhigh）虽然慢但审稿更严谨深入。两者**速度 × 严谨**的互补特性，比单模型自我对话效果更好。
+
 ## 📈 真实运行效果
 
 某 ML 研究项目上的 4 轮自动循环，从 borderline reject 到可投稿：
@@ -220,8 +222,6 @@ Claude Code 读到这些就知道怎么 SSH、激活环境、启动实验。GPT-
 ```
 
 核心设计：**Claude Code 负责执行**（读文件、写代码、跑实验、收结果），**外部 LLM 负责评审**（打分、找弱点、建议修复）。两个模型各司其职，互不评自己的作业，形成真正的反馈循环。
-
-> 💭 **为什么不用单模型自我博弈？** 用 Claude Code 的 subagent 或 agent team 同时做执行和审稿在技术上可行，但容易陷入**局部最优**——同一个模型审自己的输出会产生盲区。Claude Code 的优势是快速丝滑的执行，Codex（GPT-5.4 xhigh）虽然慢但审稿更严谨深入。两者**速度 × 严谨**的互补特性，比单模型自我对话效果更好。
 
 ## 🎛️ 自定义
 
