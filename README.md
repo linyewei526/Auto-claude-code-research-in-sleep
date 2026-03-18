@@ -308,11 +308,37 @@ Already have an experiment plan (from Workflow 1 or your own)? `/experiment-brid
 5. 🚀 **Deploy** full experiment suite to GPU via `/run-experiment`
 6. 📊 **Collect** initial results and update the experiment tracker
 
+```
+┌─────────────────────────────────────────────────────────────────┐
+│                Workflow 1.5: Experiment Bridge                    │
+│                                                                  │
+│   EXPERIMENT_PLAN.md                                             │
+│         │                                                        │
+│         ▼                                                        │
+│   ┌──────────┐     ┌──────────┐     ┌──────────┐               │
+│   │ Claude   │────▶│ GPT-5.4  │────▶│ Sanity   │               │
+│   │ Code     │     │ xhigh    │     │ Check    │               │
+│   │ writes   │     │ reviews  │     │ (1 GPU)  │               │
+│   │ code     │     │ code     │     │          │               │
+│   └──────────┘     └──────────┘     └──────────┘               │
+│                                          │                       │
+│                                          ▼                       │
+│   ┌──────────┐     ┌──────────┐     ┌──────────┐               │
+│   │ Collect  │◀────│ Monitor  │◀────│ Deploy   │               │
+│   │ results  │     │ progress │     │ to GPUs  │               │
+│   │          │     │ (+ W&B)  │     │          │               │
+│   └──────────┘     └──────────┘     └──────────┘               │
+│         │                                                        │
+│         ▼                                                        │
+│   Ready for /auto-review-loop                                    │
+└─────────────────────────────────────────────────────────────────┘
+```
+
 **Skills involved:** `experiment-bridge` + `run-experiment` + `monitor-experiment`
 
 > 💡 **One-command shortcut:** `/experiment-bridge` reads `refine-logs/EXPERIMENT_PLAN.md` automatically. Or point it to any plan: `/experiment-bridge "my_plan.md"`.
 
-> ⚙️ `AUTO_DEPLOY`, `SANITY_FIRST`, `MAX_PARALLEL_RUNS` are configurable — see [Customization](#%EF%B8%8F-customization).
+> ⚙️ `CODE_REVIEW`, `AUTO_DEPLOY`, `SANITY_FIRST`, `MAX_PARALLEL_RUNS` are configurable — see [Customization](#%EF%B8%8F-customization).
 
 ### Workflow 2: Auto Research Loop 🔁 (sleep & wake up to results)
 

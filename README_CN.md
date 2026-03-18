@@ -265,11 +265,35 @@ claude
 5. 🚀 **部署**完整实验到 GPU（`/run-experiment`）
 6. 📊 **收集**初始结果，更新实验 tracker
 
+```
+┌─────────────────────────────────────────────────────────────────┐
+│                工作流 1.5：实验桥接                                │
+│                                                                  │
+│   EXPERIMENT_PLAN.md                                             │
+│         │                                                        │
+│         ▼                                                        │
+│   ┌──────────┐     ┌──────────┐     ┌──────────┐               │
+│   │ Claude   │────▶│ GPT-5.4  │────▶│ Sanity   │               │
+│   │ Code     │     │ xhigh    │     │ Check    │               │
+│   │ 写代码    │     │ 审查代码  │     │ (1 GPU)  │               │
+│   └──────────┘     └──────────┘     └──────────┘               │
+│                                          │                       │
+│                                          ▼                       │
+│   ┌──────────┐     ┌──────────┐     ┌──────────┐               │
+│   │ 收集      │◀────│ 监控进度  │◀────│ 部署到    │               │
+│   │ 结果      │     │ (+ W&B)  │     │ GPU      │               │
+│   └──────────┘     └──────────┘     └──────────┘               │
+│         │                                                        │
+│         ▼                                                        │
+│   准备好进入 /auto-review-loop                                    │
+└─────────────────────────────────────────────────────────────────┘
+```
+
 **涉及 Skills：** `experiment-bridge` + `run-experiment` + `monitor-experiment`
 
 > 💡 **一键调用：** `/experiment-bridge` 自动读取 `refine-logs/EXPERIMENT_PLAN.md`。也可指定：`/experiment-bridge "my_plan.md"`。
 
-> ⚙️ `AUTO_DEPLOY`、`SANITY_FIRST`、`MAX_PARALLEL_RUNS` 均可配置——见[自定义](#%EF%B8%8F-自定义)。
+> ⚙️ `CODE_REVIEW`、`AUTO_DEPLOY`、`SANITY_FIRST`、`MAX_PARALLEL_RUNS` 均可配置——见[自定义](#%EF%B8%8F-自定义)。
 
 ### 工作流 2：自动科研循环 🔁（睡一觉醒来看结果）
 
