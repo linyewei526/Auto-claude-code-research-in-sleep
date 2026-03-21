@@ -36,12 +36,14 @@ git clone https://github.com/wanshuiyin/Auto-claude-code-research-in-sleep.git
 
 ```powershell
 # 全局安装（所有项目可用）
-mkdir -p %USERPROFILE%\.trae\skills
-cp -r /path/to/Auto-claude-code-research-in-sleep/skills/* %USERPROFILE%\.trae\skills\
+$globalSkillsDir = Join-Path $env:USERPROFILE ".trae\skills"
+New-Item -ItemType Directory -Path $globalSkillsDir -Force | Out-Null
+Copy-Item -Path ".\Auto-claude-code-research-in-sleep\skills\*" -Destination $globalSkillsDir -Recurse -Force
 
 # 项目级安装（仅当前项目可用）
-mkdir -p .trae/skills
-cp -r /path/to/Auto-claude-code-research-in-sleep/skills/* .trae/skills/
+$projectSkillsDir = ".\.trae\skills"
+New-Item -ItemType Directory -Path $projectSkillsDir -Force | Out-Null
+Copy-Item -Path ".\Auto-claude-code-research-in-sleep\skills\*" -Destination $projectSkillsDir -Recurse -Force
 ```
 
 安装完成后，在对应范围内直接用自然语言描述需求即可触发相应技能。
