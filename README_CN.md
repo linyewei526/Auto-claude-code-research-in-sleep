@@ -1089,6 +1089,7 @@ claude
 - [ ] **常驻模式（Daemon mode）** — 通过 `launchd`/`systemd` 自动重启 Claude Code 会话，实现真正的无人值守运行（[#11](https://github.com/wanshuiyin/Auto-claude-code-research-in-sleep/issues/11)）
 - [ ] **参考风格图表生成** — 参考论文 PDF 图表 → 识别配色/布局 → 生成同风格数据图表。方法示意图 ✅ 已由 `paper-illustration` 解决
 - [ ] **工作流执行报告** — 每个工作流完成后自动生成结构化总结：做了什么、关键决策、实验结果、评分和耗时。输出 `WORKFLOW_REPORT.md`，方便汇报
+- [ ] **文档输入全流程** — 支持传入详细文档（如 `RESEARCH_BRIEF.md`）作为 `/research-pipeline` 或 `/idea-discovery` 的输入，替代一句话 prompt。很多研究方向需要详细的上下文（前期结果、约束条件、领域知识），一句话说不清楚。文档会被解析提取问题定义、约束、已有结果和具体需求
 - [ ] **自动超参调优 skill** — 将 [auto-hparam-tuning](https://github.com/zxh0916/auto-hparam-tuning) 改写为 ARIS SKILL.md。5 步循环：理解项目 → 规划调优策略 → 跑实验 → 分析指标（TensorBoard/W&B）→ 学习迭代。接入工作流 1.5 或工作流 2
 
 ## 💬 交流群
