@@ -1,5 +1,9 @@
 # ARIS-Code Changelog
 
+## v0.3.3 (2026-04-04)
+
+- **Fix**: Catch config loading errors in ALL code paths (system prompt + runtime config). Users with incompatible Claude Code hooks settings no longer crash — ARIS shows a warning and continues with defaults.
+
 ## v0.3.2 (2026-04-04)
 
 - **Fix**: Gracefully handle incompatible Claude Code hooks configuration (PreToolUse object format). Now falls back to default config instead of crashing.

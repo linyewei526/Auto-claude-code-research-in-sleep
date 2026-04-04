@@ -2852,13 +2852,22 @@ fn resolve_export_path(
 }
 
 fn build_system_prompt(model_id: Option<&str>) -> Result<Vec<String>, Box<dyn std::error::Error>> {
-    let mut prompt = load_system_prompt(
+    let mut prompt = match load_system_prompt(
         env::current_dir()?,
         DEFAULT_DATE,
         env::consts::OS,
         "unknown",
         model_id,
-    )?;
+    ) {
+        Ok(p) => p,
+        Err(e) => {
+            eprintln!(
+                "\x1b[33mwarning\x1b[0m: could not load system prompt: {e}\n\
+                 \x1b[2mUsing minimal prompt. This may be caused by incompatible Claude Code settings.\x1b[0m"
+            );
+            Vec::new()
+        }
+    };
 
     // ARIS identity: tell the model exactly who it is to prevent hallucination.
     let model_name = model_id.unwrap_or("unknown");
