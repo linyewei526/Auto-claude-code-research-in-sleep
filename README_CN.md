@@ -145,13 +145,17 @@ claude
 > /meta-optimize                              # 元优化：分析使用记录 → 提出技能改进方案
 ```
 
-> 🧬 **元优化（可选）：** 启用被动日志，让 ARIS 从你的使用习惯中学习：
+> 🧬 **元优化（可选）：** 在**普通终端**（不是 Claude Code 会话内）运行以下命令启用被动日志：
 > ```bash
-> # 将 hook 配置复制到项目中（一次性设置）
+> # 在项目目录下一次性设置
+> mkdir -p .claude .aris/meta tools/meta_opt
 > cp Auto-claude-code-research-in-sleep/templates/claude-hooks/meta_logging.json .claude/settings.json
-> # 或将 "hooks" 部分合并到现有的 .claude/settings.json 中
+> cp Auto-claude-code-research-in-sleep/tools/meta_opt/*.sh tools/meta_opt/
+> chmod +x tools/meta_opt/*.sh
+> # 然后启动 Claude Code — hooks 立即生效
+> claude
 > ```
-> 累积 5 次以上工作流运行后，运行 `/meta-optimize` 查看基于数据的技能改进建议。
+> 累积 5 次以上工作流运行后，运行 `/meta-optimize` 查看基于数据的技能改进建议。详见[工作流 M](#工作流-mmeta-optimize-aris-优化自己)。
 
 > 📝 **模板可用！** 见 [`templates/`](templates/) 目录——每个工作流都有现成输入模板：[研究简报](templates/RESEARCH_BRIEF_TEMPLATE.md)（工作流 1）、[实验计划](templates/EXPERIMENT_PLAN_TEMPLATE.md)（工作流 1.5）、[研究叙事](templates/NARRATIVE_REPORT_TEMPLATE.md)（工作流 3）、[论文大纲](templates/PAPER_PLAN_TEMPLATE.md)（工作流 3）。
 >

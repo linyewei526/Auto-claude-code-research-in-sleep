@@ -169,13 +169,17 @@ claude
 > /meta-optimize                                # Meta: analyze usage logs → propose skill improvements
 ```
 
-> 🧬 **Meta-optimization (optional):** Enable passive logging to let ARIS learn from your usage patterns:
+> 🧬 **Meta-optimization (optional):** Run these in your **normal terminal** (not inside Claude Code) to enable passive usage logging:
 > ```bash
-> # Copy hook config into your project (one-time setup)
+> # One-time setup in your project directory
+> mkdir -p .claude .aris/meta tools/meta_opt
 > cp Auto-claude-code-research-in-sleep/templates/claude-hooks/meta_logging.json .claude/settings.json
-> # Or merge the "hooks" section into your existing .claude/settings.json
+> cp Auto-claude-code-research-in-sleep/tools/meta_opt/*.sh tools/meta_opt/
+> chmod +x tools/meta_opt/*.sh
+> # Then start Claude Code — hooks are active immediately
+> claude
 > ```
-> After 5+ workflow runs, run `/meta-optimize` to see data-driven improvement proposals for your skills.
+> After 5+ workflow runs, run `/meta-optimize` to see data-driven improvement proposals for your skills. See [Workflow M](#workflow-m-meta-optimize--aris-optimizes-itself) for details.
 
 > 📝 **Templates available!** See [`templates/`](templates/) for ready-to-use input templates for every workflow — [research brief](templates/RESEARCH_BRIEF_TEMPLATE.md) (Workflow 1), [experiment plan](templates/EXPERIMENT_PLAN_TEMPLATE.md) (Workflow 1.5), [narrative report](templates/NARRATIVE_REPORT_TEMPLATE.md) (Workflow 3), [paper plan](templates/PAPER_PLAN_TEMPLATE.md) (Workflow 3).
 >
