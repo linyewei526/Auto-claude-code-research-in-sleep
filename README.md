@@ -26,9 +26,11 @@
 
 ## 📰 What's New
 
-> **v0.3.4** (2026-04-08) — Workflow M: Self-evolving Meta-Optimize | Atomic session writes | Bash safety validation | Windows support (experimental)
+> **v0.3.5** (2026-04-08) — Research Wiki persistent knowledge base | Meta-Optimize self-evolution | Atomic session writes | Bash safety validation | Windows support (experimental)
 >
 > <details><summary>Previous versions</summary>
+>
+> **v0.3.4** (2026-04-08) — Workflow M: Self-evolving Meta-Optimize | Atomic session writes | Bash safety validation | Windows support (experimental)
 >
 > **v0.3.3** (2026-04-04) — Fix all config loading crashes for Claude Code hooks compatibility
 >
