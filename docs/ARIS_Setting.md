@@ -239,5 +239,59 @@ git commit -m "示例: 清空 personal 分支，准备添加个人内容"
 git push origin personal
 ```
 
+### <font style="color:rgba(0, 0, 0, 0.9);">github原仓库更新合并</font>
+1. 获取上游最新信息
 
+```bash
+# 进入任意一个 worktree（它们共享同一个 .git）
+cd ~/ARIS/Auto-claude-code-research-in-sleep
+
+# 一次性获取上游所有分支的最新信息
+git fetch upstream
+
+# 验证获取到了哪些上游分支
+git branch -r | grep upstream
+# 预期显示：
+# upstream/aris-code
+# upstream/feature/paper-poster
+# upstream/feature/paper-slides
+# upstream/main
+```
+
+2. 检查分支是否需要同步
+
+```bash
+# 检查 main 分支：对比本地 vs 上游
+git log HEAD..upstream/main --oneline
+
+# 输出为空？→ 已同步
+# 有输出？→ 上游有新提交，需要合并
+```
+
+3. 合并提交上游更新
+
+```bash
+# 合并上游更新
+git merge upstream/main
+
+# 推送到你的 Fork
+git push origin main
+```
+
+4. 检查其他各分支是否需要同步
+
+```bash
+cd ~/ARIS/aris-code
+git log HEAD..upstream/aris-code --oneline
+git merge upstream/aris-code
+git push origin aris-code
+
+cd ~/ARIS/paper-poster
+git log HEAD..upstream/feature/paper-poster --oneline
+# 无输出，未更新
+
+cd ~/ARIS/paper-slides
+git log HEAD..upstream/feature/paper-slides --oneline
+# 无输出，未更新
+```
 
