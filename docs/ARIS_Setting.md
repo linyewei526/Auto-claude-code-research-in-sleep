@@ -232,6 +232,10 @@ git status
 # 添加到暂存区
 git add .
 
+# 如果新服务器
+git config --global user.email "2501111906@stu.pku.edu.cn"
+git config --global user.name "linyewei526"
+
 # 提交
 git commit -m "示例: 清空 personal 分支，准备添加个人内容"
 
